@@ -4,7 +4,7 @@ from pygame.draw import *
 pygame.init()
 
 FPS = 30
-screenae = pygame.display.set_mode((1000, 1000))
+screen = pygame.display.set_mode((1000, 1000))
 
 circle(screen, (255, 200, 255), (200, 200), 100)
 rect(screen, (200, 70, 200), (170, 250, 50, 20))
