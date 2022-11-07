@@ -32,6 +32,21 @@ coolcircles = [(x, y, r, dxcool, dycool)]
 name = ""
 down = False
 
+def draw(a):
+    xi, yi, ri, dxi, dyi = a
+    xi += dxi
+    yi += dyi
+    circle(screen, COLORS[int(ri/10)], (xi, yi), ri)
+    if xi >= 1150 or xi < 50:
+        v = dxi**2 + dyi**2
+        dxi = randint(1, int(v**0.5 * 100) - 1) * 0.01 * (abs(dxi) / dxi) * -1
+        dyi = (v - dxi**2)**0.5 * (abs(dyi) / dyi)
+    if yi >= 850 or yi < 50:
+        v = dxi**2 + dyi**2
+        dyi = randint(1, int(v ** 0.5 * 100) - 1) * 0.01 * (abs(dyi) / dyi) * -1
+        dxi = (v - dyi ** 2) ** 0.5 * (abs(dxi) / dxi)
+    a = [xi, yi, ri, dxi, dyi]
+    return a
 
 while not finished:
     clock.tick(FPS)
@@ -71,37 +86,10 @@ while not finished:
         coolcircles.append([100, 200, 20, dxcool, dycool])
         last_ticks = cur_ticks
 
-
     for i in range(len(circles)):
-        xi, yi, ri, dxi, dyi = circles[i]
-        xi += dxi
-        yi += dyi
-        circle(screen, COLORS[0], (xi, yi), ri)
-        if xi >= 1150 or xi < 50:
-            v = dxi**2 + dyi**2
-            dxi = randint(1, int(v**0.5 * 100) - 1) * 0.01 * (abs(dxi) / dxi) * -1
-            dyi = (v - dxi**2)**0.5 * (abs(dyi) / dyi)
-        if yi >= 850 or yi < 50:
-            v = dxi**2 + dyi**2
-            dyi = randint(1, int(v ** 0.5 * 100) - 1) * 0.01 * (abs(dyi) / dyi) * -1
-            dxi = (v - dyi ** 2) ** 0.5 * (abs(dxi) / dxi)
-        circles[i] = [xi, yi, ri, dxi, dyi]
-
+        circles[i] = draw(circles[i])
     for i in range(len(coolcircles)):
-        xi, yi, ri, dxi, dyi = coolcircles[i]
-        xi += dxi
-        yi += dyi
-        circle(screen, COLORS[2], (xi, yi), ri)
-        if xi >= 1150 or xi < 50:
-            v = dxi**2 + dyi**2
-            dxi = randint(1, int(v**0.5 * 100) - 1) * 0.01 * (abs(dxi) / dxi) * -1
-            dyi = (v - dxi**2)**0.5 * (abs(dyi) / dyi)
-        if yi >= 850 or yi < 50:
-            v = dxi**2 + dyi**2
-            dyi = randint(1, int(v ** 0.5 * 100) - 1) * 0.01 * (abs(dyi) / dyi) * -1
-            dxi = (v - dyi ** 2) ** 0.5 * (abs(dxi) / dxi)
-        coolcircles[i] = [xi, yi, ri, dxi, dyi]
-
+        coolcircles[i] = draw(coolcircles[i])
     text = pygame.font.Font(None, 100).render('Счёт:' + str(n),
                                                   True, (255, 255, 255))
     screen.blit(text, (80, 300))
