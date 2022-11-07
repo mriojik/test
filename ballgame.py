@@ -22,7 +22,6 @@ dy =1
 dxcool = 1
 dycool = 1
 last_ticks = 0
-inp = True
 clock = pygame.time.Clock()
 finished = False
 A = []
@@ -38,10 +37,18 @@ def draw(a):
     yi += dyi
     circle(screen, COLORS[int(ri/10)], (xi, yi), ri)
     if xi >= 1150 or xi < 50:
+        if xi< 50:
+            xi = 50
+        if xi > 1150:
+            xi = 1150
         v = dxi**2 + dyi**2
         dxi = randint(1, int(v**0.5 * 100) - 1) * 0.01 * (abs(dxi) / dxi) * -1
         dyi = (v - dxi**2)**0.5 * (abs(dyi) / dyi)
     if yi >= 850 or yi < 50:
+        if yi< 50:
+            yi = 50
+        if yi > 850:
+            yi = 850
         v = dxi**2 + dyi**2
         dyi = randint(1, int(v ** 0.5 * 100) - 1) * 0.01 * (abs(dyi) / dyi) * -1
         dxi = (v - dyi ** 2) ** 0.5 * (abs(dxi) / dxi)
