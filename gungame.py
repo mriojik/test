@@ -75,6 +75,7 @@ class Ball:
         return False
 
     def draw(self):
+        """рисование снарядов"""
         pygame.draw.circle(
             self.screen,
             self.color,
@@ -102,6 +103,7 @@ class Gun:
         self.color = GREY
 
     def fire2_start(self, event):
+        """начало прицеливания"""
         self.f2_on = 1
 
     def fire2_end(self, event):
@@ -132,6 +134,7 @@ class Gun:
             self.color = GREY
 
     def draw(self):
+        """рисование пушки"""
         pygame.draw.line(screen, self.color, [40, 450],
                          [40 + self.f2_power * math.cos(self.an),
                           450 + self.f2_power * math.sin(self.an)], 10)
@@ -159,6 +162,7 @@ class Target:
         self.flag = 1
 
     def new_target(self):
+        """создание цели"""
         self.x = rnd(600, 780)
         self.y = rnd(300, 550)
         self.r = rnd(10, 50)
@@ -170,6 +174,7 @@ class Target:
         self.points += points
 
     def draw(self):
+        """рисование цели"""
         global flag
         if not waiting_for_sleep_to_over:
             pygame.draw.circle(self.screen, self.color, (self.x, self.y), self.r)

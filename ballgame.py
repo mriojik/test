@@ -7,7 +7,7 @@ pygame.init()
 FPS = 200
 screen = pygame.display.set_mode((1200, 900))
 
-RED = (255, 0, 0)
+RED = (254, 0, 0)
 BLUE = (0, 0, 255)
 YELLOW = (255, 255, 0)
 GREEN = (0, 255, 0)
@@ -20,6 +20,7 @@ y = 100
 r = 50
 dx = 1
 dy = 1
+h = 0
 dxcool = 1
 dycool = 1
 last_ticks = 0
@@ -56,6 +57,7 @@ def draw(a):
         dyi = randint(1, int(v ** 0.5 * 100) - 1) * 0.01 * (abs(dyi) / dyi) * -1
         dxi = (v - dyi ** 2) ** 0.5 * (abs(dxi) / dxi)
     a = [xi, yi, ri, dxi, dyi]
+    print(h)
     return a
 
 
